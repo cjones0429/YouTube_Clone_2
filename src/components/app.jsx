@@ -1,28 +1,36 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import SearchBar from './SearchBar/searchBar';
+import apiKeys from '../API-Keys.json'
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            videoId: '2RQh0BOoBbQ'
+            videoId: '2RQh0BOoBbQ',
+            relatedVideoIds: []
         }
     }
 
     searchForVideo = async (searchQuery) => {
-        let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${searchQuery}&key=AIzaSyC_TUmTIqQx4r4y8Y16DpOQNoxRkNuIkl4`)
+        if (searchQuery == undefined){
+            searchQuery = this.state.videoId;
+        };
+        let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${searchQuery}&key=${apiKeys.googleAPIKey}`)
         console.log(response.data);
         let videos = response.data;
+        let relatedVideoIds = [response.data.items[1].id.videoId, response.data.items[2].id.videoId,response.data.items[3].id.videoId,response.data.items[4].id.videoId];
+        console.log(relatedVideoIds);
         this.setState({
-            videoId: videos.items[0].id.videoId
+            videoId: videos.items[0].id.videoId,
+            relatedVideoIds: relatedVideoIds,
         })
     }
 // response.data.items[0]
 
-    // componentDidMount(){
-    //     this.searchForVideo();
-    // }
+     componentDidMount(){
+         this.searchForVideo();
+     }
 
     render() { 
         return ( 
@@ -38,7 +46,7 @@ class App extends Component {
                 <br/>
                 <iframe id="ytplayer" type="text/html" width="640" height="360"
                 src={`https://www.youtube.com/embed/${this.state.videoId}?autoplay=1&origin=http://example.com`}
-                frameborder="0">
+                frameBorder="0">
                 </iframe>
             </div>
          );

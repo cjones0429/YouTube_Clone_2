@@ -25,24 +25,21 @@ class SearchBar extends Component {
         })
     }
 
-    handleSubmit = (e, props) => {
+    handleSubmit = (e) => {
         e.preventDefault();
-        let searchQuery = {
-            searchQuery: this.state.searchQuery
-        };
-
-        props.searchForVideo(searchQuery)
+        let searchQuery = this.state.searchQuery;
+        this.props.searchForVideo(searchQuery)
     }
 
     render() { 
         return ( 
             <div>
-                <form onSubmit={(e) => this.handleSubmit(e, this.props)}>
+                <form onSubmit={this.handleSubmit}>
                     <label>Search for Videos:</label>
                     <input type="text" name="searchQuery" value={this.state.searchQuery} onChange={this.handleChange} />
                     {this.state.errors.searchQuery ? <p style={{color:'red'}}>{this.state.errors.searchQuery}</p> : ''}
+                    <button type="submit">Search</button>
                 </form>
-                <button type="submit">Search</button>
             </div>
         );
     }
