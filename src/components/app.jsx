@@ -16,12 +16,17 @@ class App extends Component {
     searchForVideo = async (searchQuery) => {
 
         if (searchQuery == undefined){
-            searchQuery = this.state.videoId;
+            searchQuery = '2RQh0BOoBbQ';
         };
         let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${searchQuery}&type=video&key=${apiKeys.googleAPIKey}`)
         console.log(response.data);
         let videos = response.data;
-        let relatedVideoIds = [response.data.items[1].id.videoId, response.data.items[2].id.videoId,response.data.items[3].id.videoId,response.data.items[4].id.videoId];
+        let relatedVideoIds = [];
+        if (videos.items > 1){
+            for (let i = 1; i < videos.items.length; i++){
+                relatedVideoIds.push(videos.items[i].id.videoId)
+            }
+        }
         console.log(relatedVideoIds);
         this.setState({
             videoId: videos.items[0].id.videoId,
