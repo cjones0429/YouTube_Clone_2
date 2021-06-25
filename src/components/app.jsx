@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import SearchBar from './SearchBar/searchBar';
+import Comments from './Comments/comments';
 import apiKeys from '../API-Keys.json'
 import VideoDescription from './VideoDescription/videoDescription';
 import VideoTitle from './VideoTitle/videoTitle';
@@ -88,9 +89,10 @@ class App extends Component {
                     <br/>
                 </div>
                 <VideoTitle state={this.state}/>
-                <iframe id="ytplayer" type="text/html" width="640" height="360"
+                <iframe title="title" id="ytplayer" type="text/html" width="640" height="360"
                 src={`https://www.youtube.com/embed/${this.state.videoId}?autoplay=1&origin=http://example.com`}
                 frameBorder="0">
+                <br/>
                 </iframe>
                 <VideoDescription state={this.state}/>
             </div>
