@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import SearchBar from './SearchBar/searchBar';
+import apiKeys from '../API-Keys.json';
 
 class App extends Component {
     constructor(props) {
@@ -11,7 +12,7 @@ class App extends Component {
     }
 
     searchForVideo = async (searchQuery) => {
-        let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${searchQuery}&key=AIzaSyC_TUmTIqQx4r4y8Y16DpOQNoxRkNuIkl4`)
+        let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${searchQuery}&type=video&key=${apiKeys.googleAPIKey}`)
         console.log(response.data);
         let videos = response.data;
         this.setState({
@@ -19,10 +20,6 @@ class App extends Component {
         })
     }
 // response.data.items[0]
-
-    // componentDidMount(){
-    //     this.searchForVideo();
-    // }
 
     render() { 
         return ( 
@@ -38,7 +35,7 @@ class App extends Component {
                 <br/>
                 <iframe id="ytplayer" type="text/html" width="640" height="360"
                 src={`https://www.youtube.com/embed/${this.state.videoId}?autoplay=1&origin=http://example.com`}
-                frameborder="0">
+                frameBorder="0">
                 </iframe>
             </div>
          );
