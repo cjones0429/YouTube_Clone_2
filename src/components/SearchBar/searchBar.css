@@ -1,0 +1,13 @@
+.searchbar {
+    text-align: center;
+}
+
+.searchbar-input {
+    height: 30px;
+    width: 360px;
+}
+
+.search-button {
+    margin-left: 0.5em;
+    background-color:cornflowerblue;
+}

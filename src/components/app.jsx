@@ -5,6 +5,8 @@ import Comments from './Comments/comments';
 import apiKeys from '../API-Keys.json'
 import VideoDescription from './VideoDescription/videoDescription';
 import VideoTitle from './VideoTitle/videoTitle';
+import './app.css'
+
 
 
 class App extends Component {
@@ -78,7 +80,7 @@ class App extends Component {
     render() { 
         return ( 
             <div>
-                <div>
+                <div className="main-title">
                 <center>
                     <h1>YouTube Clone</h1>
                 </center>
@@ -89,7 +91,7 @@ class App extends Component {
                     <br/>
                 </div>
                 <VideoTitle state={this.state}/>
-                <iframe title="title" id="ytplayer" type="text/html" width="640" height="360"
+                <iframe className="iframe" title="title" id="ytplayer" type="text/html" width="640" height="360"
                 src={`https://www.youtube.com/embed/${this.state.videoId}?autoplay=1&origin=http://example.com`}
                 frameBorder="0">
                 <br/>
