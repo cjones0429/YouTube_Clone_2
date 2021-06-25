@@ -4,7 +4,7 @@ import './videoTitle.css';
 function VideoTitle(props){
     return(
         <div className="video-title">
-            <h1>{props.state.videoTitle}</h1>
+            <h2>{props.state.videoTitle}</h2>
         </div>
     )
 }

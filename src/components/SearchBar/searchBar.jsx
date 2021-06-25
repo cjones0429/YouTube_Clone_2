@@ -36,7 +36,7 @@ class SearchBar extends Component {
         return ( 
             <div className="searchbar">
                 <form onSubmit={this.handleSubmit}>
-                    <label>Search:</label>
+                    <label className= "search-title">Search:</label>
                     <input className="searchbar-input" type="text" name="searchQuery" placeholder="Search for videos here..." value={this.state.searchQuery} onChange={this.handleChange} />
                     {this.state.errors.searchQuery ? <p style={{color:'red'}}>{this.state.errors.searchQuery}</p> : ''}
                     <button className="search-button" type="submit">Search</button>
