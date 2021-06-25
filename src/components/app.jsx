@@ -9,13 +9,15 @@ class App extends Component {
         super(props);
         this.state = { 
             videoId: '2RQh0BOoBbQ',
-            relatedVideoIds: []
+            relatedVideoIds: [],
+            videoTitle: '',
+            // videoDescription: ''
         }
     }
 
     searchForVideo = async (searchQuery) => {
 
-        if (searchQuery == undefined){
+        if (searchQuery === undefined){
             searchQuery = '2RQh0BOoBbQ';
         };
         let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${searchQuery}&type=video&key=${apiKeys.googleAPIKey}`)
@@ -31,9 +33,10 @@ class App extends Component {
         this.setState({
             videoId: videos.items[0].id.videoId,
             relatedVideoIds: relatedVideoIds,
+            videoTitle: videos.items[0].title,
+            // videoDescription: videos.items[0].description,
         })
     }
-// response.data.items[0]
 
 
      componentDidMount(){
@@ -44,15 +47,20 @@ class App extends Component {
     render() { 
         return ( 
             <div>
-                {/* <div> */}
+                <div>
                 <center>
                     <h1>YouTube Clone</h1>
                 </center>
-                {/* </div> */}
-                
-                <br/>
-                <SearchBar searchForVideo={this.searchForVideo}/>
-                <br/>
+                </div>
+                <div>
+                    <br/>
+                    <SearchBar searchForVideo={this.searchForVideo}/>
+                    <br/>
+                </div>
+                <div>
+                    <h2>{this.state.videoTitle}</h2>
+                </div>
+
                 <iframe id="ytplayer" type="text/html" width="640" height="360"
                 src={`https://www.youtube.com/embed/${this.state.videoId}?autoplay=1&origin=http://example.com`}
                 frameBorder="0">
