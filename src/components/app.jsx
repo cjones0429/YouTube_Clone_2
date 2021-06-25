@@ -22,7 +22,7 @@ class App extends Component {
         console.log(response.data);
         let videos = response.data;
         let relatedVideoIds = [];
-        if (videos.items > 1){
+        if (videos.items.length > 1){
             for (let i = 1; i < videos.items.length; i++){
                 relatedVideoIds.push(videos.items[i].id.videoId)
             }
