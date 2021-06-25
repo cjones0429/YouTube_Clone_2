@@ -82,7 +82,7 @@ class App extends Component {
             <div>
                 <div className="main-title">
                 <center>
-                    <h1>YouTube Clone</h1>
+                    <h1>Welcome to YouSearch!</h1>
                 </center>
                 </div>
                 <div>
