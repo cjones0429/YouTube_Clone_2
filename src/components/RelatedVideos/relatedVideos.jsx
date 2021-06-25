@@ -1,12 +1,20 @@
 import React from 'react';
+import ImageButton from 'react-image-button';
 
 function RelatedVideos(props){
-    const relatedVideoLinks = props.relatedVideoIds.map((videoId)=> 
-
+    const relatedVideos = props.relatedVideoImageUrls.map((imageUrl)=> 
+        <span>
+            <input type="image" src={imageUrl} />
+        </span>
     );
     return(
         <div>
-            <p1>{props.state.videoDescription}</p1>
+            <div>
+                <h1>Related Videos:</h1>
+            </div>
+            <div>
+                {relatedVideos}
+            </div>
         </div>
     )
 }

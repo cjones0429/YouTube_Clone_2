@@ -5,6 +5,7 @@ import Comments from './Comments/comments';
 import apiKeys from '../API-Keys.json'
 import VideoDescription from './VideoDescription/videoDescription';
 import VideoTitle from './VideoTitle/videoTitle';
+import RelatedVideos from './RelatedVideos/relatedVideos';
 
 
 class App extends Component {
@@ -41,9 +42,9 @@ class App extends Component {
         this.setState({
             videoId: videos.items[0].id.videoId,
             relatedVideoIds: relatedVideoIds,
+            relatedVideoImageUrls: relatedVideoImageUrls,
         })
         this.getTitleAndDescription(videos.items[0].id.videoId);
-        this.getRelatedVideoImages(relatedVideoIds);
     }
 
     getTitleAndDescription = async (videoId) => {
@@ -55,18 +56,6 @@ class App extends Component {
         this.setState({
             videoTitle: response.data.items[0].snippet.title,
             videoDescription: response.data.items[0].snippet.description
-        })
-    }
-
-    getRelatedVideoImages = async (relatedVideoIds) => {
-        const relatedVideoImageUrls = relatedVideoIds.map(videoId=> {
-            return axios
-                .get(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoId}&key=${apiKeys.googleAPIKey}`)
-                .then(response => response.data.items[0].snippet.thumbnails.default.url)
-        });
-        console.log(relatedVideoImageUrls);
-        this.setState({
-            relatedVideoImageUrls: relatedVideoImageUrls
         })
     }
 
@@ -95,6 +84,7 @@ class App extends Component {
                 <br/>
                 </iframe>
                 <VideoDescription state={this.state}/>
+                <RelatedVideos relatedVideoImageUrls={this.state.relatedVideoImageUrls}/>
             </div>
          );
     }
