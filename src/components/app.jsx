@@ -85,6 +85,16 @@ class App extends Component {
         this.getCommentsAndReplies();
     }
 
+    likeComment = async (comment) =>{
+        await axios.patch(`http://127.0.0.1:8000/comments/${comment.id}/`, { "likes": comment.likes + 1});
+        this.getCommentsAndReplies();
+    }
+
+    dislikeComment = async (comment) =>{
+        await axios.patch(`http://127.0.0.1:8000/comments/${comment.id}/`, { "dislikes": comment.dislikes + 1});
+        this.getCommentsAndReplies();
+    }
+
      componentDidMount(){
          this.searchForVideo();
          this.getCommentsAndReplies();
@@ -113,7 +123,7 @@ class App extends Component {
                 <VideoDescription state={this.state}/>
                 <RelatedVideos relatedVideoImageUrls={this.state.relatedVideoImageUrls} relatedVideoIds={this.state.relatedVideoIds} searchForVideo={this.searchForVideo}/>
                 <Comment postComment={this.postComment} state={this.state}/>
-                <DisplayComments state={this.state} postReply={this.postReply}/>
+                <DisplayComments state={this.state} postReply={this.postReply} likeComment={this.likeComment} dislikeComment={this.dislikeComment}/>
             </div>
          );
     }

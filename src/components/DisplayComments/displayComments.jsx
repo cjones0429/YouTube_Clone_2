@@ -16,7 +16,13 @@ function DisplayComments(props){
                 return(
                     <div>
                         <div>
-                            <h2>Comment I.D.:{comment.id}</h2>
+                            <span>
+                                <h2>Comment I.D.:{comment.id}</h2>
+                                <h3>Likes: {comment.likes}</h3>
+                                <button onClick={()=>props.likeComment(comment)}>Like</button>
+                                <h3>Dislikes: {comment.dislikes}</h3>
+                                <button onClick={()=>props.dislikeComment(comment)}>Dislike</button>
+                            </span>
                             <p1>{comment.comment}</p1>
                         </div>
                         <div>
