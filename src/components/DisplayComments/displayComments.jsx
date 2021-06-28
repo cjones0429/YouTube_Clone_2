@@ -1,4 +1,5 @@
 import React from 'react';
+import Reply from '../Reply/reply';
 
 
 function DisplayComments(props){
@@ -20,6 +21,7 @@ function DisplayComments(props){
                         </div>
                         <div>
                             <h3>Replies:</h3>
+                            <Reply postReply={props.postReply} comment={comment}/>
                             {replyDivs}
                         </div>
                     </div>
@@ -33,6 +35,7 @@ function DisplayComments(props){
                         </div>
                         <div>
                             <h3>Replies:</h3>
+                            <Reply postReply={props.postReply} comment={comment}/>
                             <p1>No Replies</p1>
                         </div>
                     </div>

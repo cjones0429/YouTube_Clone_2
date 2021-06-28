@@ -80,6 +80,11 @@ class App extends Component {
         this.getCommentsAndReplies();
     }
 
+    postReply = async (reply) =>{
+        await axios.post('http://127.0.0.1:8000/replies/', reply);
+        this.getCommentsAndReplies();
+    }
+
      componentDidMount(){
          this.searchForVideo();
          this.getCommentsAndReplies();
@@ -108,7 +113,7 @@ class App extends Component {
                 <VideoDescription state={this.state}/>
                 <RelatedVideos relatedVideoImageUrls={this.state.relatedVideoImageUrls} relatedVideoIds={this.state.relatedVideoIds} searchForVideo={this.searchForVideo}/>
                 <Comment postComment={this.postComment} state={this.state}/>
-                <DisplayComments state={this.state}/>
+                <DisplayComments state={this.state} postReply={this.postReply}/>
             </div>
          );
     }
