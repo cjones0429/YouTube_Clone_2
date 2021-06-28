@@ -6,6 +6,7 @@ import VideoDescription from './VideoDescription/videoDescription';
 import VideoTitle from './VideoTitle/videoTitle';
 import RelatedVideos from './RelatedVideos/relatedVideos';
 import DisplayComments from './DisplayComments/displayComments';
+import Comment from './Comments/comments';
 import './app.css'
 
 
@@ -74,6 +75,11 @@ class App extends Component {
         });
     }
 
+    postComment = async (comment) =>{
+        await axios.post('http://127.0.0.1:8000/comments/', comment);
+        this.getCommentsAndReplies();
+    }
+
      componentDidMount(){
          this.searchForVideo();
          this.getCommentsAndReplies();
@@ -101,6 +107,7 @@ class App extends Component {
                 </iframe>
                 <VideoDescription state={this.state}/>
                 <RelatedVideos relatedVideoImageUrls={this.state.relatedVideoImageUrls} relatedVideoIds={this.state.relatedVideoIds} searchForVideo={this.searchForVideo}/>
+                <Comment postComment={this.postComment} state={this.state}/>
                 <DisplayComments state={this.state}/>
             </div>
          );

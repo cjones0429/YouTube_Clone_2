@@ -4,8 +4,8 @@ import React from 'react';
 function DisplayComments(props){
     const comments = props.state.comments.filter((comment)=> comment.video_id === props.state.videoId);
     if (comments.length > 0){
-        for (let i = 0; i < comments.length; i++){
-            const replies = props.state.replies.filter((reply)=> comments[i].id === reply.comment_id);
+        let commentsDivs = comments.map((comment)=>{
+            const replies = props.state.replies.filter((reply)=> comment.id === reply.comment_id);
             if(replies.length > 0){
                 const replyDivs = replies.map((reply)=>
                     <div>
@@ -15,8 +15,8 @@ function DisplayComments(props){
                 return(
                     <div>
                         <div>
-                            <h2>Comment I.D.:{comments.id}</h2>
-                            <p1>{comments[i].comment}</p1>
+                            <h2>Comment I.D.:{comment.id}</h2>
+                            <p1>{comment.comment}</p1>
                         </div>
                         <div>
                             <h3>Replies:</h3>
@@ -28,8 +28,8 @@ function DisplayComments(props){
                 return(
                     <div>
                         <div>
-                            <h2>Comment I.D.:{comments.id}</h2>
-                            <p1>{comments[i].comment}</p1>
+                            <h2>Comment I.D.:{comment.id}</h2>
+                            <p1>{comment.comment}</p1>
                         </div>
                         <div>
                             <h3>Replies:</h3>
@@ -38,7 +38,12 @@ function DisplayComments(props){
                     </div>
                 )
             }
-        }
+        });
+        return(
+            <div>
+                {commentsDivs}
+            </div>
+        )
     }
     else{
         return(
