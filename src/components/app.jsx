@@ -6,6 +6,7 @@ import apiKeys from '../API-Keys.json'
 import VideoDescription from './VideoDescription/videoDescription';
 import VideoTitle from './VideoTitle/videoTitle';
 import RelatedVideos from './RelatedVideos/relatedVideos';
+import DisplayComments from './DisplayComments/displayComments';
 import './app.css'
 
 
@@ -19,6 +20,8 @@ class App extends Component {
             videoTitle: '',
             videoDescription: '',
             relatedVideoImageUrls: [],
+            comments: [],
+            replies: []
         }
     }
 
@@ -61,8 +64,20 @@ class App extends Component {
         })
     }
 
+    getCommentsAndReplies = async () => {
+        let commentResponse = await axios.get('http://127.0.0.1:8000/comments/');
+        console.log(commentResponse.data);
+        let repliesResponse = await axios.get('http://127.0.0.1:8000/replies/');
+        console.log(repliesResponse.data);
+        this.setState({
+            comments: commentResponse.data,
+            replies: repliesResponse.data
+        });
+    }
+
      componentDidMount(){
          this.searchForVideo();
+         this.getCommentsAndReplies();
      }
 
 
@@ -87,6 +102,7 @@ class App extends Component {
                 </iframe>
                 <VideoDescription state={this.state}/>
                 <RelatedVideos relatedVideoImageUrls={this.state.relatedVideoImageUrls} relatedVideoIds={this.state.relatedVideoIds} searchForVideo={this.searchForVideo}/>
+                <DisplayComments state={this.state}/>
             </div>
          );
     }
