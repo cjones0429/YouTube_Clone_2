@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import SearchBar from './SearchBar/searchBar';
-import Comments from './Comments/comments';
+// import Comments from './Comments/comments';
 import apiKeys from '../API-Keys.json'
 import VideoDescription from './VideoDescription/videoDescription';
 import VideoTitle from './VideoTitle/videoTitle';
@@ -86,7 +86,7 @@ class App extends Component {
                 <br/>
                 </iframe>
                 <VideoDescription state={this.state}/>
-                <RelatedVideos relatedVideoImageUrls={this.state.relatedVideoImageUrls}/>
+                <RelatedVideos relatedVideoImageUrls={this.state.relatedVideoImageUrls} relatedVideoIds={this.state.relatedVideoIds} searchForVideo={this.searchForVideo}/>
             </div>
          );
     }
