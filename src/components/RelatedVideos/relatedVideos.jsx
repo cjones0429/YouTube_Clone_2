@@ -1,5 +1,4 @@
 import React from 'react';
-import ImageButton from 'react-image-button';
 
 function RelatedVideos(props){
     const relatedVideos = props.relatedVideoImageUrls.map((imageUrl)=> 
