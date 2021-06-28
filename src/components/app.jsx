@@ -86,7 +86,7 @@ class App extends Component {
                 <br/>
                 </iframe>
                 <VideoDescription state={this.state}/>
-                <RelatedVideos relatedVideoImageUrls={this.state.relatedVideoImageUrls}/>
+                <RelatedVideos relatedVideoImageUrls={this.state.relatedVideoImageUrls} relatedVideoIds={this.state.relatedVideoIds} searchForVideo={this.searchForVideo}/>
             </div>
          );
     }

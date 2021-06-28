@@ -1,10 +1,9 @@
 import React from 'react';
-import ImageButton from 'react-image-button';
 
 function RelatedVideos(props){
-    const relatedVideos = props.relatedVideoImageUrls.map((imageUrl)=> 
+    const relatedVideos = props.relatedVideoImageUrls.map((imageUrl, index)=> 
         <span>
-            <input type="image" src={imageUrl} />
+            <input type="image" src={imageUrl} onClick={()=>props.searchForVideo(props.relatedVideoIds[index])}/>
         </span>
     );
     
