@@ -43,7 +43,7 @@ function DisplayComments(props){
                     <div>
                         <div>
                             <br/>
-                            <h4>Comment: {comment.id}</h4>
+                            <h4>Comment:</h4>
                             <p1>{comment.comment}</p1>
                         </div>
                         <br/>
