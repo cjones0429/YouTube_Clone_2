@@ -42,7 +42,7 @@ class Comment extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <label>Add Comment:</label>
                     <input type="text" name="comments" value={this.state.comments} onChange={this.handleChange} />
-                    <button type="submit">Submit</button>
+                    <button type="submit">Comment</button>
                 </form>
             </div>
          );

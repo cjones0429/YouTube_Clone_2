@@ -15,34 +15,42 @@ function DisplayComments(props){
                 );
                 return(
                     <div>
+                        <div className="buttons">
+                            <div>
+                                {/* <h4>Comment ID: {comment.id}</h4> */}
+                                <h6>Likes: {comment.likes} <button color="#08C165" className="like" onClick={()=>props.likeComment(comment)}>Like</button> Dislikes: {comment.dislikes} <button className="dislike" onClick={()=>props.dislikeComment(comment)}>Dislike</button></h6>
+                            </div>
+                        </div>
                         <div>
                             <span>
-                                <h2>Comment I.D.:{comment.id}</h2>
-                                <h3>Likes: {comment.likes}</h3>
-                                <button onClick={()=>props.likeComment(comment)}>Like</button>
-                                <h3>Dislikes: {comment.dislikes}</h3>
-                                <button onClick={()=>props.dislikeComment(comment)}>Dislike</button>
+                                <h4>Comments:</h4>
+                                <p1>{comment.comment}</p1>
                             </span>
-                            <p1>{comment.comment}</p1>
                         </div>
+                        <br/>
                         <div>
-                            <h3>Replies:</h3>
-                            <Reply postReply={props.postReply} comment={comment}/>
-                            {replyDivs}
+                            <span>
+                                <h4>Replies:</h4>
+                                {replyDivs}
+                                <Reply postReply={props.postReply} comment={comment}/>
+                            </span>
                         </div>
                     </div>
+                    
                 )
             }else{
                 return(
                     <div>
                         <div>
-                            <h2>Comment I.D.:{comment.id}</h2>
+                            <br/>
+                            <h4>Comment: {comment.id}</h4>
                             <p1>{comment.comment}</p1>
                         </div>
+                        <br/>
                         <div>
-                            <h3>Replies:</h3>
-                            <Reply postReply={props.postReply} comment={comment}/>
+                            <h4>Replies:</h4>
                             <p1>No Replies</p1>
+                            <Reply postReply={props.postReply} comment={comment}/>
                         </div>
                     </div>
                 )

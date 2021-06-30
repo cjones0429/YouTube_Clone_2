@@ -103,7 +103,7 @@ class App extends Component {
 
     render() { 
         return ( 
-            <div>
+            <React.Fragment>
                 <div className="main-title">
                 <center>
                     <h1>Welcome to YouSearch!</h1>
@@ -115,16 +115,27 @@ class App extends Component {
                     <br/>
                 </div>
                 <VideoTitle state={this.state}/>
-                <iframe className="iframe" title="title" id="ytplayer" type="text/html" width="640" height="360"
-                src={`https://www.youtube.com/embed/${this.state.videoId}?autoplay=1&origin=http://example.com`}
-                frameBorder="0">
                 <br/>
-                </iframe>
-                <VideoDescription state={this.state}/>
-                <RelatedVideos relatedVideoImageUrls={this.state.relatedVideoImageUrls} relatedVideoIds={this.state.relatedVideoIds} searchForVideo={this.searchForVideo}/>
-                <Comment postComment={this.postComment} state={this.state}/>
-                <DisplayComments state={this.state} postReply={this.postReply} likeComment={this.likeComment} dislikeComment={this.dislikeComment}/>
-            </div>
+                <center>
+                    <span>
+                        <iframe className="iframe" title="title" id="ytplayer" type="text/html" width="640" height="360"
+                        src={`https://www.youtube.com/embed/${this.state.videoId}?autoplay=1&origin=http://example.com`}
+                        frameBorder="0"> </iframe>
+                    </span>
+                    <VideoDescription state={this.state}/>
+                </center>
+                    <div className="related">
+                    <RelatedVideos relatedVideoImageUrls={this.state.relatedVideoImageUrls} relatedVideoIds={this.state.relatedVideoIds} searchForVideo={this.searchForVideo}/>
+                    </div>
+                    <div className="addcomment">
+                       <Comment postComment={this.postComment} state={this.state}/>     
+                    </div>
+                         
+                    <div className="comments">
+                        <DisplayComments state={this.state} postReply={this.postReply} likeComment={this.likeComment} dislikeComment={this.dislikeComment}/>
+                    </div>
+                    <br/>       
+            </React.Fragment>
          );
     }
 }

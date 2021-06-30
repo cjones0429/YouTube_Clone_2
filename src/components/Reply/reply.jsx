@@ -40,7 +40,7 @@ class Reply extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <label>Add Reply:</label>
                     <input type="text" name="reply" value={this.state.reply} onChange={this.handleChange} />
-                    <button type="submit">Submit</button>
+                    <button type="submit">Reply</button>
                 </form>
             </div>
          );

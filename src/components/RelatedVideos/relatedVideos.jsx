@@ -10,7 +10,7 @@ function RelatedVideos(props){
     return(
         <div>
             <div>
-                <h1>Related Videos:</h1>
+                <h3>Related Videos:</h3>
             </div>
             <div>
                 {relatedVideos}
